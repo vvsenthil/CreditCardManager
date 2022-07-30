@@ -10,8 +10,8 @@ import com.sapient.card.entity.CreditCard;
 
 public interface CreditCardRepository extends JpaRepository<CreditCard, String> {
 	CreditCard findByNumber(String number);
-	@Modifying(clearAutomatically=true)
+	@Modifying(clearAutomatically = true)
 	@Transactional
 	@Query("update CreditCard c SET c.balance = :balance WHERE c.number = :number")
-	int updateCreditCardUsingQueryAnnotation( @Param("balance") int balance,@Param("number") String number);
+	int updateCreditCardUsingQueryAnnotation(@Param("balance") int balance, @Param("number") String number);
 }

@@ -24,43 +24,35 @@ public class CreditCardServiceImpl implements CreditCardService {
 	@Override
 	public List<CreditCardResponse> addCreditCardDetails(CreditCardRequest cardDetails) throws CreditCardException {
 		Optional<CreditCard> cardDetail = Optional.ofNullable(cardRepository.findByNumber(cardDetails.getNumber()));
-		System.out.println("*************************" + cardDetail);
 		if (cardDetail.isPresent()) {
-			int newBalance = cardDetail.get().getBalance() + 0;//cardDetails.getBalance();
-			System.out.println("***********newBalance**************" + newBalance);
-			if(cardDetail.get().getLimit()>=newBalance) {
-				cardRepository.updateCreditCardUsingQueryAnnotation(newBalance,cardDetails.getNumber());
-			}else {
-				System.out.println("**********Throw Exception amount high ************");
-				throw new CreditCardException("You are Trying to use your credit more than your allowed credit Limit", HttpStatus.BAD_REQUEST);
-			}	
-			
-			//creditCard = cardRepository.save(
-			//		new CreditCard(cardDetails.getNumber(), cardDetails.getName(), cardDetails.getLimit(), newBalance));
+			int newBalance = cardDetail.get().getBalance() + cardDetails.getBalance();
+			if (cardDetail.get().getLimit() >= newBalance) {
+				cardRepository.updateCreditCardUsingQueryAnnotation(newBalance, cardDetails.getNumber());
+			} else {
+				throw new CreditCardException("You are Trying to use your credit more than your allowed credit Limit",
+						HttpStatus.BAD_REQUEST);
+			}
+
 		} else {
-			System.out.println("*********** else part **************");
 			cardRepository
 					.save(new CreditCard(cardDetails.getNumber(), cardDetails.getName(), cardDetails.getLimit(), 0));
 		}
-		
 		List<CreditCardResponse> creditCardDetails = getCreditCardDetails();
-		//cardDetails.setLimit(creditCard.getLimit());
-		//cardDetails.setBalance(creditCard.getBalance());
 		return creditCardDetails;
 	}
 
 	@Override
 	public List<CreditCardResponse> getCreditCardDetails() {
-		 List<CreditCard> cardData = cardRepository.findAll();
-		 List<CreditCardResponse> finalDetails = new ArrayList<>();
-		 cardData.stream().forEach(x->{
-			 CreditCardResponse cardDetail = new CreditCardResponse();
-			 cardDetail.setBalance(x.getBalance());
-			 cardDetail.setName(x.getName());
-			 cardDetail.setLimit(x.getLimit());
-			 cardDetail.setNumber(x.getNumber());
-			 finalDetails.add(cardDetail);
-		 });
+		List<CreditCard> cardData = cardRepository.findAll();
+		List<CreditCardResponse> finalDetails = new ArrayList<>();
+		cardData.stream().forEach(x -> {
+			CreditCardResponse cardDetail = new CreditCardResponse();
+			cardDetail.setBalance(x.getBalance());
+			cardDetail.setName(x.getName());
+			cardDetail.setLimit(x.getLimit());
+			cardDetail.setNumber(x.getNumber());
+			finalDetails.add(cardDetail);
+		});
 		return finalDetails;
 	}
 }

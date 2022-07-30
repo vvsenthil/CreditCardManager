@@ -5,14 +5,16 @@ public class CreditCardRequest {
 	private String name;
 	private String number;
 	private int limit;
+	private int balance;
 	
 	public CreditCardRequest() {		 
 	}
 	
-	public CreditCardRequest(String name, String number, int limit) {
+	public CreditCardRequest(String name, String number, int limit,int balance) {
 		this.name = name;
 		this.number = number;
 		this.limit = limit;
+		this.setBalance(balance) ; 
 	}
 
 	public String getName() {
@@ -52,5 +54,13 @@ public class CreditCardRequest {
 	      sum += digit;
 	    }
 	    return (sum % 10) == 0;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 }
