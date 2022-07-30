@@ -11,4 +11,6 @@ public interface CreditCardService {
 	public List<CreditCardResponse> addCreditCardDetails(CreditCardRequest cardDetails) throws CreditCardException;
 
 	public List<CreditCardResponse> getCreditCardDetails();
+	
+	public void removeCards();
 }

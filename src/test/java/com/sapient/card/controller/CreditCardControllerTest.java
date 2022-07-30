@@ -44,31 +44,36 @@ class CreditCardControllerTest {
 		assertEquals("1111222233334444",creditCardDetails.get(0).getNumber());
 		assertEquals(creditCardDetails.get(0).getLimit(),300);
 		assertEquals(creditCardDetails.get(0).getBalance(), 0);
+		service.removeCards();
 	}
 
 	@Test
 	void testCreateCreditTransactionForUser_2() {
 		List<CreditCardResponse> creditCardDetails = service.addCreditCardDetails(creditCardDetailTwo);
 		assertNotNull(creditCardDetails);
-		assertEquals("Bruce",creditCardDetails.get(1).getName());
-		assertEquals("4444333322221111",creditCardDetails.get(1).getNumber());		
-		assertEquals(creditCardDetails.get(1).getLimit(),500);
-		assertEquals(creditCardDetails.get(1).getBalance(), 0);
+		assertEquals("Bruce",creditCardDetails.get(0).getName());
+		assertEquals("4444333322221111",creditCardDetails.get(0).getNumber());		
+		assertEquals(creditCardDetails.get(0).getLimit(),500);
+		assertEquals(creditCardDetails.get(0).getBalance(), 0);
+		service.removeCards();
 	}
 	
 	@Test
 	void testGetAllTransactions() {
 		List<CreditCardResponse> creditCardDetails = service.addCreditCardDetails(creditCardDetailTwo);
 		assertNotNull(creditCardDetails);
-		assertEquals(2, creditCardDetails.size());
+		assertEquals(1, creditCardDetails.size());
 	}
 
 	@Test
-	public void testLuhn10Algorithm() {
+	public void testLuhn10Algorithm_PositiveCase() {
 		String cardNumber = "4716-4359-1733-0099";
 		CreditCardRequest request = new CreditCardRequest("Allice", cardNumber, 100,0);
-		assertTrue(request.checkLuhn10() );
-		
+		assertTrue(request.checkLuhn10() );		
+	}
+	
+	@Test
+	public void testLuhn10Algorithm_NegativeCase() {
 		String wrongCardNumber = "1111-2222-1111-2222";
 		CreditCardRequest request1 = new CreditCardRequest("Allice", wrongCardNumber, 100,0);
 		assertFalse(request1.checkLuhn10() );
