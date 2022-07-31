@@ -73,5 +73,4 @@ java -jar target/CreditCardManager-0.0.1-SNAPSHOT.jar
         "limit": 30,
         "balance": 0
     }
-
-    ```
+ ```
