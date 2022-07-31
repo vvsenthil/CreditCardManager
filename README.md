@@ -40,4 +40,20 @@ java -jar target/CreditCardManager-0.0.1-SNAPSHOT.jar
 
 8. To check that application started successfully go to browser and enter this URL : http://localhost:8080/creditCard/test
         This should produce result as below : 
-            Hello Application started Successfully !!!
+            Hello Application started Successfully !!! 
+## Technology used
+- H2 in memory database.
+- Spring Boot, including Spring Data JPA.
+- slf4j for logging.
+
+## Features not implemented
+1. Credit card balance update future is disabled.
+2. Authentication and Authorization can be implemented using Spring Security .
+
+# API Endpoints:
+
+### Post Endpoints:
+
+1. To Create a new Wallet, pass the following JSON in the body of the post request:
+    
+    #### Request : 
