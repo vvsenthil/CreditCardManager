@@ -74,3 +74,23 @@ java -jar target/CreditCardManager-0.0.1-SNAPSHOT.jar
         "balance": 0
     }
  ```
+### GET Endpoint : 
+
+ 1. To fetch all credit card transactions:
+
+    #### Request : 
+    URL: http://localhost:8080/creditCard/getAll
+    
+    #### Response : 
+    
+    ``` 
+    [
+    {
+        "name": "Allice",
+        "number": "1111222233334444",
+        "limit": 30,
+        "balance": 0
+    }
+]
+    
+    ``` 
