@@ -32,8 +32,12 @@ spring.h2.console.enabled=true
 spring.jpa.properties.hibernate.globally_quoted_identifiers=true
 #spring.jpa.show-sql=true
 ```
+6. From the root folder of the application run this command : mvn clean install
+7. To Run this application, open command prompt from root directory of this project and run this command : 
+	mvn spring-boot:run
+	(or)
+java -jar target/CreditCardManager-0.0.1-SNAPSHOT.jar  
 
-
-This is a full-stack Web Application for managing a Credit Card details.
-
-Credit Card Managment Rest Service 
+8. To check that application started successfully go to browser and enter this URL : http://localhost:8080/creditCard/test
+        This should produce result as below : 
+            Hello Application started Successfully !!!
