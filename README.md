@@ -52,8 +52,26 @@ java -jar target/CreditCardManager-0.0.1-SNAPSHOT.jar
 
 # API Endpoints:
 
-### Post Endpoints:
+### Post Endpoint:
 
 1. To Create a new Wallet, pass the following JSON in the body of the post request:
     
     #### Request : 
+ URL: http://localhost:8080/creditCard/add    
+    ``` 
+    {
+    "name":"Allice",   
+    "number":"1111222233334444",
+    "limit":30
+    }
+    ```     
+ #### Response :
+ ``` 
+    {
+        "name": "Allice",
+        "number": "1111222233334444",
+        "limit": 30,
+        "balance": 0
+    }
+
+    ```
