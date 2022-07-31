@@ -6,11 +6,14 @@ A simple credit card management Rest application running on the JVM that manages
 
 This Rest API Application is to store and retrieve credit card details from the database. The new card details are added into the system by passing the name of the card holder, card number and limit for that card. Balance update functionality can be enabled based on the future need, but as of now that functionality is disabled. 
 
-### Functionalities Added 
+### Functionalities Details  
 
-1. Card details will be added into the system based on the customer input. 
-2. Only Unique card details are allowed to enter, if you try to enter existing card details system will not allow to enter.  
-3. Balance adding future is disabled, if required we can enable that functionality by un commenting the code and then user can add blance to the existing cards. 
+This application allows to perform Create/Read operations.
+Users can add new Credit Cards to the System and each credit card has 3 attributes: User Name, Card Number, withdrawal Limit. The User will then be able to view the added credit cards as a list in a table.
+
+The Application allows to insert 16 to 19 digit card numbers and also allows users to write such numbers in full or by writing the digits separated by spaces or dashes. It will be then the App to elaborate and format the card's numbers. All the Card Numbers must work against the Luhn 10 algorithm, otherwise validation errors will be displayed.
+
+The Luhn 10 algorithm has been implemented on both front-end and back-end to provide a more secure application.
 
 ### Added Api's:
 1. It will be possible to create a new credit card 
